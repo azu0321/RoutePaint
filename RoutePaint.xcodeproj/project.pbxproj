@@ -11,6 +11,7 @@
 		A60383071A2CBC7E00D0BEC1 /* libopencv_highgui.2.4.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A60383051A2CBC7E00D0BEC1 /* libopencv_highgui.2.4.9.dylib */; };
 		A603830B1A2CC05800D0BEC1 /* Paint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A603830A1A2CC05800D0BEC1 /* Paint.cpp */; };
 		A603830D1A2CC14000D0BEC1 /* File.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A603830C1A2CC14000D0BEC1 /* File.cpp */; };
+		A6789B651A3E9ADC00C07FD7 /* Event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A6789B641A3E9ADC00C07FD7 /* Event.cpp */; };
 		A6B11E941A2CB96900A686D7 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A6B11E931A2CB96900A686D7 /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,8 @@
 		A603830C1A2CC14000D0BEC1 /* File.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = File.cpp; sourceTree = "<group>"; };
 		A603830E1A2CC1ED00D0BEC1 /* Types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Types.h; sourceTree = "<group>"; };
 		A603830F1A2CC25E00D0BEC1 /* boostGraph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = boostGraph.h; sourceTree = "<group>"; };
+		A6789B631A3E9AC400C07FD7 /* Event.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		A6789B641A3E9ADC00C07FD7 /* Event.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Event.cpp; sourceTree = "<group>"; };
 		A6B11E901A2CB96900A686D7 /* RoutePaint */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RoutePaint; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6B11E931A2CB96900A686D7 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -80,6 +83,8 @@
 				A603830C1A2CC14000D0BEC1 /* File.cpp */,
 				A603830E1A2CC1ED00D0BEC1 /* Types.h */,
 				A603830F1A2CC25E00D0BEC1 /* boostGraph.h */,
+				A6789B631A3E9AC400C07FD7 /* Event.h */,
+				A6789B641A3E9ADC00C07FD7 /* Event.cpp */,
 			);
 			path = RoutePaint;
 			sourceTree = "<group>";
@@ -140,6 +145,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6789B651A3E9ADC00C07FD7 /* Event.cpp in Sources */,
 				A603830D1A2CC14000D0BEC1 /* File.cpp in Sources */,
 				A603830B1A2CC05800D0BEC1 /* Paint.cpp in Sources */,
 				A6B11E941A2CB96900A686D7 /* main.cpp in Sources */,
