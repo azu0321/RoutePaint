@@ -172,6 +172,7 @@ int main(int argc, const char * argv[]) {
     
     double p[MAP_X][MAP_Y] = {0};
     double xy[MAP_X][MAP_Y] = {0};
+    double color[MAP_X][MAP_Y] = {0};
     
     int p_x[MAX_POINT]={0},p_y[MAX_POINT] = {0};
     int i = 0;
@@ -204,11 +205,15 @@ int main(int argc, const char * argv[]) {
     File fi;
     std::string filename = "/Users/e125733/Desktop/IV/sampledata.txt";
     fi.file_read(filename,xy);
+    
+    File fi2;
+    std::string filename2 = "/Users/e125733/Desktop/IV/sampledata4.txt";
+    fi2.file_read(filename2,color);
 
 
     Paint pt;
 //    pt.paint_map(xy,p);
-    pt.paint_map2(xy,p,p_x,p_y,i);
+    pt.paint_map2(xy,p,color,p_x,p_y,i);
     
     
     return 0;
