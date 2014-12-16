@@ -113,6 +113,9 @@ void Paint::paint_map2(double xy[MAP_X][MAP_Y],double p[MAP_X][MAP_Y],double col
             Event e;
             if(e.event((int)color[x[i]][y[i]])){
                 std::cout<< "WALK!!!!!\n";
+                if( i == num ){
+                    std::cout<< "CREAR!!!!!\n";
+                }
             } else {
                 std::cout<< "GAME OVER!!!!!\n";
                 break;
@@ -121,7 +124,7 @@ void Paint::paint_map2(double xy[MAP_X][MAP_Y],double p[MAP_X][MAP_Y],double col
 
             cv::imshow("drawing", img);
        }
-    std::cout<< "CREAR!!!!!\n";
+
     cv::imshow("drawing", img);
     cv::waitKey(0);
 }
