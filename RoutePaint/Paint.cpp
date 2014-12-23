@@ -77,7 +77,7 @@ void Paint::move(cv::Mat img,vector<data3> xy,vector<data3> color,vector<data3> 
     
     double pre_x = 0;
     double pre_y = 0;
-    
+    int angle = 0;
     for (auto n: p) {
         
         if(n.x == 0 && n.y == 0){
@@ -85,13 +85,45 @@ void Paint::move(cv::Mat img,vector<data3> xy,vector<data3> color,vector<data3> 
             pre_y = n.y;
             
         } else {
-            
+
             for(int i = 0; i < 50; i++){
-                int x = i*(n.x - pre_x);
-                int y = i*(n.y - pre_y);
+                int x =(n.x - pre_x);
+                int y =(n.y - pre_y);
                 img = cv::Mat::zeros(500, 500, CV_8UC3);
                 paint_map(img,xy,color,p);
-                cv::circle(img, cv::Point(25+50*pre_x+x, 25+50*pre_y+y), 20, cv::Scalar(0,0,200), 3, 4);
+
+                if(x == 0){
+                    if(y == 0){
+                        angle = angle;
+                    } else if(y < 0){
+                        angle = 270;
+                    } else{
+                        angle = 90;
+                        
+                    }
+                    
+                } else if (x < 0) {
+                    if(y == 0){
+                        angle = 180;
+                    } else if(y < 0){
+                        angle = 225;
+                    } else{
+                        angle = 135;
+                    }
+                } else {
+                    if(y == 0){
+                        angle = 0;
+                    } else if(y < 0){
+                        angle = 315;
+                    } else{
+                        angle = 45;
+                        
+                    }
+
+                    
+                }
+                //cv::circle(img, cv::Point(25+50*pre_x+x, 25+50*pre_y+y), 20, cv::Scalar(0,0,200), 3, 4);
+                cv::ellipse(img, cv::Point(25+50*pre_x+x*i, 25+50*pre_y+y*i), cv::Size(20, 20), angle, 15, 345, cv::Scalar(0,0,200), -1, CV_AA);
                 cv::imshow("drawing", img);
                 sleep(0.1);
             }
