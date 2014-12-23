@@ -186,8 +186,6 @@ int main(int argc, const char * argv[]) {
         int y = (int)r/MAP_X;
         int x = (int)r%MAP_X;
         
-        
-        
         for(auto n:color){
             if(n.x == x && n.y == y){
                 point.push_back(data3(x,y,n.data));
