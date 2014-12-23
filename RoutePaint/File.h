@@ -19,8 +19,13 @@ using namespace std;
 class File{
     
 public:
+    
     static void file_read(string fileName, double data[MAP_X][MAP_Y]);
     static void file_write(string fileName, double data[MAP_X][MAP_Y]);
+    
+    
+    static vector<data3> file_read2(string fileName);
+    static void file_write2(string fileName, data3 *data);
 };
 
 #endif

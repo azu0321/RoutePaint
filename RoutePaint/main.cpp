@@ -77,10 +77,9 @@ public:
     // fileからデータを取得してグラフを作る。
     void makeDataGraph(string filename){
         
-        // ファイルのデータを2次元配列にいれる
-        double xy[MAP_X][MAP_Y];
+
         File f;
-        f.file_read(filename,xy);
+        vector<data3> xy = f.file_read2(filename);
         
         for(int y = 0; y < MAP_Y; y++){
             for(int x = 0; x < MAP_X; x++){
@@ -89,7 +88,7 @@ public:
                 float wight;
                 // 自分の右側と接続
                 if(point+1 < (y+1)*MAP_X){
-                    wight=abs(xy[x][y]-xy[x+1][y])+1;
+                    wight=abs(xy[point].data-xy[point+1].data)+1;
                     edges_.push_back(Edge(point,point+1));
                     edges_.back().setWeight(wight);
                     
@@ -97,7 +96,7 @@ public:
                 
                 // 自分の下と接続
                 if(point+MAP_X < MAP_X*MAP_Y){
-                    wight=abs(xy[x][y]-xy[x][y+1])+1;
+                    wight=abs(xy[point].data-xy[point+MAP_X].data)+1;
                     edges_.push_back(Edge(point,point+MAP_X));
                     edges_.back().setWeight(wight);
                 }
@@ -105,20 +104,21 @@ public:
                 
                 // 自分左下と接続
                 if(point < (y+1)*MAP_X-1 && point-MAP_X+1 > 0){
-                    wight=1.6*(abs(xy[x][y]-xy[x-1][y+1])+1);
+                    wight=1.6*(abs(xy[point].data - xy[point-MAP_X+1].data)+1);
                     edges_.push_back(Edge(point,point-MAP_X+1));
                     edges_.back().setWeight(wight);
                 }
                 
                 // 自分の左上と接続
                 if(point-MAP_X-1 >= 0 && point != y*MAP_X){
-                    wight=1.6*(abs(xy[x][y]-xy[x-1][y-1])+1);
+                    wight=1.6*(abs(xy[point].data-xy[point-MAP_X-1].data)+1);
                     edges_.push_back(Edge(point,point-MAP_X-1));
                     edges_.back().setWeight(wight);
                 }
             }
         }
-    }
+
+     }
     
     
     //Edge classのままでは RouteSearcherに入れられないので、vector<pair<int,int>>に変換して返す。
@@ -159,8 +159,8 @@ int main(int argc, const char * argv[]) {
     //講義中にも言っていた+、-も使えるようにオーバーロードされています。
     //intsなどの複数形になっているものはvectorのようにtypedefされています。
     
-    SimpleGraph sg;
     std::string Datafile = "/Users/e125733/Desktop/IV/sampledata.txt";
+    SimpleGraph sg;
     sg.makeDataGraph(Datafile);
     
     RouteSearcher rs;//ダイクストラで経路探索を行なうクラス
@@ -174,8 +174,11 @@ int main(int argc, const char * argv[]) {
     double xy[MAP_X][MAP_Y] = {0};
     double color[MAP_X][MAP_Y] = {0};
     
+    
+    
     int p_x[MAX_POINT]={0},p_y[MAX_POINT] = {0};
     int i = 0;
+    vector<data3> point;
     
     rs.shortestPath(from); //現在地を引数にわたし、ダイクストラを実行
     rs.getRouteTo(to,&route); //routeに結果が返る
@@ -183,7 +186,7 @@ int main(int argc, const char * argv[]) {
     
     //結果の表示
     cout<<"Route is ";
-    for(auto &r : route){ //routeの配列を戦闘から順番にrという変数にいれてループする
+    for(auto &r : route){ //routeの配列を先頭から順番にrという変数にいれてループする
 
         int y = (int)r/MAP_X;
         int x = (int)r%MAP_X;
@@ -192,6 +195,9 @@ int main(int argc, const char * argv[]) {
         p_y[i] = y;
         
         p[x][y] = 1;
+        
+        
+        point.push_back(data3(x,y,1));
         i++;
         cout<< r << ", p[" << x <<"][" << y << "]" <<"->";
     }
@@ -200,7 +206,17 @@ int main(int argc, const char * argv[]) {
     double distance = rs.getDistanceTo(to);
     cout<<"\nRoute cost is "<<distance<<endl;
     
+    std::string Datafile2 = "/Users/e125733/Desktop/IV/sampledata.txt";
+    File fi;
+    vector<data3> a = fi.file_read2(Datafile2);
     
+    for (auto n: a) {
+        std::cout << dec << n.x << " " << n.y << " " << n.data << '\n';
+    }
+    
+    
+    
+    /*
     
     File fi;
     std::string filename = "/Users/e125733/Desktop/IV/sampledata.txt";
@@ -215,7 +231,7 @@ int main(int argc, const char * argv[]) {
 //    pt.paint_map(xy,p);
     pt.paint_map2(xy,p,color,p_x,p_y,i);
     
-    
+    */
     return 0;
     
 }

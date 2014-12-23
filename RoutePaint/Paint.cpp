@@ -13,11 +13,12 @@
 using namespace std;
 
 void Paint::paint_map(double xy[MAP_X][MAP_Y],double p[MAP_X][MAP_Y]){
+    
     cv::namedWindow("drawing", CV_WINDOW_AUTOSIZE|CV_WINDOW_FREERATIO);
     cv::Mat img = cv::Mat::zeros(500, 500, CV_8UC3);
 
     for(int j = 0; j < MAP_Y; j++){
-    for(int i = 0; i < MAP_X; i++){
+        for(int i = 0; i < MAP_X; i++){
         
         img = cv::Mat::zeros(500, 500, CV_8UC3);
 
@@ -41,7 +42,7 @@ void Paint::paint_map(double xy[MAP_X][MAP_Y],double p[MAP_X][MAP_Y]){
         }
      
         cv::circle(img, cv::Point(25+50*i, 25+50*j), 20, cv::Scalar(0,0,200), 3, 4);
-        sleep(1);
+        sleep(0.5);
         cv::imshow("drawing", img);
         }
     }
@@ -108,16 +109,18 @@ void Paint::paint_map2(double xy[MAP_X][MAP_Y],double p[MAP_X][MAP_Y],double col
                 }
             }
             
-            sleep(1);
-            cv::circle(img, cv::Point(25+50*x[i], 25+50*y[i]), 20, cv::Scalar(0,0,200), 3, 4);
+                sleep(0.5);
+                cv::circle(img, cv::Point(25+50*x[i], 25+50*y[i]), 20, cv::Scalar(0,0,200), 3, 4);
+
+
             Event e;
             if(e.event((int)color[x[i]][y[i]])){
-                std::cout<< "WALK!!!!!\n";
+                std::cout<< "WALK\n";
                 if( i == num ){
-                    std::cout<< "CREAR!!!!!\n";
+                     std::cout<< "GAME CLEAR!!\n";
                 }
             } else {
-                std::cout<< "GAME OVER!!!!!\n";
+                std::cout<< "GAME OVER!!\n";
                 break;
             }
             
@@ -125,6 +128,44 @@ void Paint::paint_map2(double xy[MAP_X][MAP_Y],double p[MAP_X][MAP_Y],double col
             cv::imshow("drawing", img);
        }
 
+    cv::imshow("drawing", img);
+    cv::waitKey(0);
+}
+
+void Paint::paint_map3(vector<data3> xy,vector<data3> p){
+    
+    cv::namedWindow("drawing", CV_WINDOW_AUTOSIZE|CV_WINDOW_FREERATIO);
+    cv::Mat img = cv::Mat::zeros(500, 500, CV_8UC3);
+    
+    for(int j = 0; j < MAP_Y; j++){
+        for(int i = 0; i < MAP_X; i++){
+            
+            img = cv::Mat::zeros(500, 500, CV_8UC3);
+            
+            // 描画
+            for(int y = 0; y < MAP_Y; y++){
+                for(int x = 0; x < MAP_X; x++){
+                    // 地点
+                    int point_x = SIZE*x;
+                    int point_y = SIZE*y;
+                    
+                    // マップの表示
+                    cv::rectangle(img, cv::Point(point_x+1,point_y+1), cv::Point(SIZE-1 + point_x, SIZE-1+point_y),
+                                  cv::Scalar(300-(xy[y*MAP_Y+x].data*COLOR),300-(xy[y*MAP_Y+x].data*COLOR),(300-xy[y*MAP_Y+x].data*COLOR)), -1, CV_AA);
+                    
+                    // 通った地点の表示
+                    if(p[y*MAP_Y+x].data == 1){
+                        cv::circle(img,cv::Point(25+point_x , 25+point_y), 5, cv::Scalar(200,0,0), -1, CV_AA);
+                    }
+                    
+                }
+            }
+            
+            cv::circle(img, cv::Point(25+50*i, 25+50*j), 20, cv::Scalar(0,0,200), 3, 4);
+            sleep(0.5);
+            cv::imshow("drawing", img);
+        }
+    }
     cv::imshow("drawing", img);
     cv::waitKey(0);
 }
