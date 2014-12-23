@@ -28,11 +28,9 @@ using namespace std;
 class Paint{
     
 public:
-    static void paint_map(double xy[MAP_X][MAP_Y],double p[MAP_X][MAP_Y]);
-    static void paint_map2(double xy[MAP_X][MAP_Y],double p[MAP_X][MAP_Y],double color[MAP_X][MAP_Y],int x[MAX_POINT], int y[MAX_POINT], int num);
     
-    static void paint_map3(vector<data3> xy,vector<data3> p);
-    static void move(vector<data3> xy,vector<data3> p);
+    static void paint_map(cv::Mat img,vector<data3> xy,vector<data3> color,vector<data3> p);
+    static void move(cv::Mat img,vector<data3> xy,vector<data3> color,vector<data3> p);
 };
 
 

@@ -9,28 +9,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RoutePaint/Paint.cpp"
-            timestampString = "440922332.159338"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "Paint::paint_map(double xy[MAP_X][MAP_Y],double p[MAP_X][MAP_Y])"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "RoutePaint/main.cpp"
-            timestampString = "441028174.262295"
+            timestampString = "441029497.31656"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "226"
-            endingLineNumber = "226"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
             landmarkName = "main(int argc, const char * argv[])"
             landmarkType = "7">
          </BreakpointContent>
@@ -48,38 +32,6 @@
             startingLineNumber = "20"
             endingLineNumber = "20"
             landmarkName = "Event::event(int color)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RoutePaint/Paint.cpp"
-            timestampString = "440922332.159338"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
-            landmarkName = "Paint::paint_map2(double xy[MAP_X][MAP_Y],double p[MAP_X][MAP_Y],double color[MAP_X][MAP_Y],int x[MAX_POINT], int y[MAX_POINT], int num)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RoutePaint/Paint.cpp"
-            timestampString = "440844347.271272"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
-            landmarkName = "Paint::paint_map(double xy[MAP_X][MAP_Y],double p[MAP_X][MAP_Y])"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

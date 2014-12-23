@@ -79,7 +79,7 @@ public:
         
 
         File f;
-        vector<data3> xy = f.file_read2(filename);
+        vector<data3> xy = f.file_read(filename);
         
         for(int y = 0; y < MAP_Y; y++){
             for(int x = 0; x < MAP_X; x++){
@@ -170,36 +170,33 @@ int main(int argc, const char * argv[]) {
     int from=0;
     int to=MAP_X*MAP_Y-1;
     
-    double p[MAP_X][MAP_Y] = {0};
-    double xy[MAP_X][MAP_Y] = {0};
-    double color[MAP_X][MAP_Y] = {0};
-    
-    
-    
-    int p_x[MAX_POINT]={0},p_y[MAX_POINT] = {0};
-    int i = 0;
+
     vector<data3> point;
     
     rs.shortestPath(from); //現在地を引数にわたし、ダイクストラを実行
     rs.getRouteTo(to,&route); //routeに結果が返る
     
-    
-    //結果の表示
+    File fi2;
+    std::string Datafile3 = "/Users/e125733/Desktop/IV/sampledata4.txt";
+    vector<data3> color = fi2.file_read(Datafile3);
+     //結果の表示
     cout<<"Route is ";
     for(auto &r : route){ //routeの配列を先頭から順番にrという変数にいれてループする
-
+        
         int y = (int)r/MAP_X;
         int x = (int)r%MAP_X;
         
-        p_x[i] = x;
-        p_y[i] = y;
-        
-        p[x][y] = 1;
         
         
-        point.push_back(data3(x,y,1));
-        i++;
-        cout<< r << ", p[" << x <<"][" << y << "]" <<"->";
+        for(auto n:color){
+            if(n.x == x && n.y == y){
+                point.push_back(data3(x,y,n.data));
+                break;
+            }
+        }
+        
+        cout<< r << ", p[" << x <<"][" << y << "] " <<"->";
+        
     }
     
     //目的地までのコスト
@@ -208,30 +205,15 @@ int main(int argc, const char * argv[]) {
     
     std::string Datafile2 = "/Users/e125733/Desktop/IV/sampledata.txt";
     File fi;
-    vector<data3> a = fi.file_read2(Datafile2);
-    
-    for (auto n: a) {
-        std::cout << dec << n.x << " " << n.y << " " << n.data << '\n';
-    }
-    
-    
-    
-    /*
-    
-    File fi;
-    std::string filename = "/Users/e125733/Desktop/IV/sampledata.txt";
-    fi.file_read(filename,xy);
-    
-    File fi2;
-    std::string filename2 = "/Users/e125733/Desktop/IV/sampledata4.txt";
-    fi2.file_read(filename2,color);
-
+    vector<data3> a = fi.file_read(Datafile2);
 
     Paint pt;
-//    pt.paint_map(xy,p);
-    pt.paint_map2(xy,p,color,p_x,p_y,i);
+    cv::Mat img = cv::Mat::zeros(500, 500, CV_8UC3);
+    //pt.paint_map3(img,a,color,point);
+    pt.move(img,a,color,point);
+    cv::imshow("drawing", img);
+    cv::waitKey(0);
     
-    */
     return 0;
     
 }
