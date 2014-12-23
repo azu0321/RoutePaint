@@ -70,31 +70,46 @@ void Paint::paint_map(cv::Mat img,vector<data3> xy,vector<data3> color,vector<da
         cv::circle(img,cv::Point(25+(n.x*SIZE) , 25+(n.y*SIZE)), 5, cv::Scalar(200,0,0), -1, CV_AA);
     }
     
-    //            cv::circle(img, cv::Point(25+50*i, 25+50*j), 20, cv::Scalar(0,0,200), 3, 4);
-    //            sleep(0.5);
-    //            cv::imshow("drawing", img);
-    //        }
-    //    }
-
 }
 
 void Paint::move(cv::Mat img,vector<data3> xy,vector<data3> color,vector<data3> p){
     bool flag=true;
+    
+    double pre_x = 0;
+    double pre_y = 0;
+    
     for (auto n: p) {
-        img = cv::Mat::zeros(500, 500, CV_8UC3);
-        paint_map(img,xy,color,p);
         
-        cv::circle(img, cv::Point(25+50*n.x, 25+50*n.y), 20, cv::Scalar(0,0,200), 3, 4);
-        Event e;
-        if(e.event(n.data)){
-            flag = true;
-            std::cout<< "WALK!!!!!\n";
+        if(n.x == 0 && n.y == 0){
+            pre_x = n.x;
+            pre_y = n.y;
+            
         } else {
-            flag = false;
-            break;
+            
+            for(int i = 0; i < 50; i++){
+                int x = i*(n.x - pre_x);
+                int y = i*(n.y - pre_y);
+                img = cv::Mat::zeros(500, 500, CV_8UC3);
+                paint_map(img,xy,color,p);
+                cv::circle(img, cv::Point(25+50*pre_x+x, 25+50*pre_y+y), 20, cv::Scalar(0,0,200), 3, 4);
+                cv::imshow("drawing", img);
+                sleep(0.1);
+            }
+            
+            Event e;
+            if(e.event(n.data)){
+                flag = true;
+                std::cout<< "WALK!!!!!\n";
+            } else {
+                flag = false;
+                break;
+            }
+            
+
+            
+            pre_x = n.x;
+            pre_y = n.y;
         }
-        sleep(1);
-        cv::imshow("drawing", img);
     }
     
     if(flag){
