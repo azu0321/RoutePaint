@@ -12,7 +12,6 @@
 
 using namespace std;
 
-
 void Paint::paint_map(cv::Mat img,vector<data3> xy,vector<data3> color,vector<data3> p){
     
     cv::namedWindow("drawing", CV_WINDOW_AUTOSIZE|CV_WINDOW_FREERATIO);
@@ -58,7 +57,7 @@ void Paint::paint_map(cv::Mat img,vector<data3> xy,vector<data3> color,vector<da
             
             // マップの表示
             cv::rectangle(img, cv::Point(point_x+1,point_y+1), cv::Point(SIZE-1 + point_x, SIZE-1+point_y),
-                          cv::Scalar(300-(xy[point].data*COLOR*red),300-(xy[point].data*COLOR*green),(300-xy[point].data*COLOR*blue)), -1, CV_AA);
+                          cv::Scalar(300-((xy[point].data+1)*COLOR*red),300-((xy[point].data+1)*COLOR*green),300-((xy[point].data+1)*COLOR*blue)), -1, CV_AA);
             
             
             
@@ -122,7 +121,6 @@ void Paint::move(cv::Mat img,vector<data3> xy,vector<data3> color,vector<data3> 
 
                     
                 }
-                //cv::circle(img, cv::Point(25+50*pre_x+x, 25+50*pre_y+y), 20, cv::Scalar(0,0,200), 3, 4);
                 cv::ellipse(img, cv::Point(25+50*pre_x+x*i, 25+50*pre_y+y*i), cv::Size(20, 20), angle, 15, 345, cv::Scalar(0,0,200), -1, CV_AA);
                 cv::imshow("drawing", img);
                 sleep(0.1);
