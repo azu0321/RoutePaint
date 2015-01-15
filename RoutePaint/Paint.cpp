@@ -66,10 +66,11 @@ void Paint::paint_map(cv::Mat img,vector<data3> xy,vector<data3> color,vector<da
     
     // 通った地点の表示
     for (auto n: p) {
-        cv::circle(img,cv::Point(25+(n.x*SIZE) , 25+(n.y*SIZE)), 5, cv::Scalar(200,0,0), -1, CV_AA);
+        cv::circle(img,cv::Point(20+(n.x*SIZE) , 20+(n.y*SIZE)), 5, cv::Scalar(200,0,0), -1, CV_AA);
     }
     
 }
+
 
 void Paint::move(cv::Mat img,vector<data3> xy,vector<data3> color,vector<data3> p){
     bool flag=true;
@@ -88,7 +89,7 @@ void Paint::move(cv::Mat img,vector<data3> xy,vector<data3> color,vector<data3> 
             for(int i = 0; i < 50; i++){
                 int x =(n.x - pre_x);
                 int y =(n.y - pre_y);
-                img = cv::Mat::zeros(500, 500, CV_8UC3);
+                img = cv::Mat::zeros(640, 640, CV_8UC3);
                 paint_map(img,xy,color,p);
 
                 if(x == 0){
@@ -121,7 +122,7 @@ void Paint::move(cv::Mat img,vector<data3> xy,vector<data3> color,vector<data3> 
 
                     
                 }
-                cv::ellipse(img, cv::Point(25+50*pre_x+x*i, 25+50*pre_y+y*i), cv::Size(20, 20), angle, 15, 345, cv::Scalar(0,0,200), -1, CV_AA);
+                cv::ellipse(img, cv::Point(20+40*pre_x+x*i, 20+40*pre_y+y*i), cv::Size(20, 20), angle, 15, 345, cv::Scalar(0,0,200), -1, CV_AA);
                 cv::imshow("drawing", img);
                 sleep(0.1);
             }

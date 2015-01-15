@@ -11,12 +11,16 @@
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 
-#define MAP_X 10
-#define MAP_Y 10
-#define SIZE 50
+
+//#define MAP_X 10
+//#define MAP_Y 10
+#define MAP_X 16
+#define MAP_Y 16
+
+#define SIZE 40
 #define COLOR 80
 
-#define MAX_POINT 100
+#define MAX_POINT 16*16
 struct data3{
     data3(float x_,float y_,float data_):x(x_),y(y_),data(data_){}
     float x;
@@ -25,6 +29,7 @@ struct data3{
 };
 
 using namespace std;
+
 class Paint{
     
 public:
